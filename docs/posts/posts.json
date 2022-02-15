@@ -1,0 +1,19 @@
+[
+  {
+    "path": "posts/2022-02-06-welcome/",
+    "title": "Welcome!",
+    "description": "Hello! Welcome to my blog. This is where I will be posting updates and other fun things. Take a look around!",
+    "author": [
+      {
+        "name": "Renee Lamanna",
+        "url": {}
+      }
+    ],
+    "date": "2022-02-06",
+    "categories": [],
+    "contents": "\n\n\n\n",
+    "preview": {},
+    "last_modified": "2022-02-06T08:42:05-08:00",
+    "input_file": {}
+  }
+]

@@ -1,10 +1,13 @@
 ---
-title: "About this site"
+title: "About Renee"
 description: |
-  Some additional details about the website
+  More about me 
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+ I graduated from UCSB in 2020 ith a B.S. in Aquatic Biology. I spent much of my undergrad as a scientific diver and lab tech for SBC-LTER. I loved being underwater off my favorite coast everday amongst the kelp forests collecting data as part of decades-long projects. I continued field work after I graduated, but this time in Wetland restoration. Both ecosystems alike many others are experiencing permant damage caused by anthropogenic stressors. 
+  
+  I am privledged to have spent so much time in marine research and I believe it has given me an advantage in understand their importance. I came to Bren to learn more about people's relationship with the environment, especially though the food they consume (e.g. fish, agriculture). I am also interested in how coastal cities will be responding to climate change and how we can better develop our cities to be more self-sustaining. 
