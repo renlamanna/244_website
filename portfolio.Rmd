@@ -1,0 +1,363 @@
+---
+title: "Portfolio"
+description: |
+  Check out some of my work!
+---
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE)
+# Attach necessary pkgs and set code chunk options
+library(here)
+library(tidyverse)
+library(GGally)
+library(stats)
+library(ggbeeswarm)
+library(cowplot)
+library(patchwork)
+library(jtools)
+library(broom)
+library(caret)
+library(janitor)
+library(kableExtra)
+library(equatiomatic)
+```
+
+```{r}
+# Read in the data
+palmetto <- read_csv(here("data", "palmetto.csv"))
+```
+
+# Data Wrangling
+```{r}
+# Some data wrangling to make life easier
+palmetto_clean <- palmetto %>% 
+  select(species, height:green_lvs) %>% 
+  mutate(species = case_when(
+    species == "1"~ "0",
+    species == "2" ~ "1"
+  )) %>% 
+  mutate(species_full = case_when(
+    species == "0" ~ "S_repens",
+    species == "1" ~ "S_etonia"
+  )) %>% 
+mutate(species = as.factor(species)) %>% 
+  na.exclude()
+```
+
+# Data Visualization
+Below are data visualizations to explore trends amongst the predictor variables: `green_lvs`, `height`, `length`, and `width`.
+```{r include = FALSE}
+# Use ggpairs to get a quick overview of selected variables between species
+palmetto_clean %>% 
+  ggpairs(aes(color = species_full)) 
+```
+
+```{r}
+p1 <- ggplot(data = palmetto_clean, aes(x = species_full, y = length)) +
+  geom_beeswarm(aes(color = species_full), size = .4, alpha = .4) +
+  scale_color_manual(values = c("lightskyblue", "palegoldenrod"))+
+ geom_boxplot(fill = NA, width = 0.2, outlier.color = NA) +
+  stat_summary(fun=mean, 
+               geom="point", 
+               shape=20, 
+               size=2, 
+               color="black", 
+               fill="black") +
+   theme_minimal() +
+  theme(axis.title.x = element_text(hjust = 0.5, vjust = 0.5),
+        legend.position = "none") +
+  labs(x = "Species", y = "Length (cm)", title = "A") 
+
+p2 <- ggplot(data = palmetto_clean, aes(x = species_full, y = width)) +
+  geom_beeswarm(aes(color = species_full), size = .4, alpha = .4) +
+  scale_color_manual(values = c("lightskyblue", "palegoldenrod"))+
+ geom_boxplot(fill = NA, width = 0.2, outlier.color = NA) +
+  stat_summary(fun=mean, 
+               geom="point", 
+               shape=20, 
+               size=2, 
+               color="black", 
+               fill="black") +
+   theme_minimal() +
+  theme(axis.title.x = element_text(hjust = 0.5, vjust = 0.5),
+        legend.position = "none") +
+  labs(x = "Species", y = "Width (cm)", title = "B") 
+
+p3 <- ggplot(data = palmetto_clean, aes(x = species_full, y = height)) +
+  geom_beeswarm(aes(color = species_full), size = .4, alpha = .4) +
+  scale_color_manual(values = c("lightskyblue", "palegoldenrod"))+
+ geom_boxplot(fill = NA, width = 0.2, outlier.color = NA) +
+  stat_summary(fun=mean, 
+               geom="point", 
+               shape=20, 
+               size=2, 
+               color="black", 
+               fill="black") +
+   theme_minimal() +
+  theme(axis.title.x = element_text(hjust = 0.5, vjust = 0.5),
+        legend.position = "none") +
+  labs(x= "Species", y = "Height (cm)", title = "C") 
+
+p4 <- ggplot(data = palmetto_clean,aes( x=species_full, y = green_lvs)) +
+  geom_violin(aes(color = species)) +
+   scale_color_manual(values = c("palegoldenrod", "lightskyblue2")) +
+  theme_minimal() +
+ geom_boxplot(fill = NA, width = 0.2, outlier.color = NA) +
+  stat_summary(fun=mean, 
+               geom="point", 
+               shape=20, 
+               size=2, 
+               color="black", 
+               fill="black") +
+  theme(axis.title.x = element_text(hjust = 0.5, vjust = 0.5),
+        legend.position = "none")  +
+  labs(x = "Species", y = "# of Green Leaves", title = "D")
+```
+
+```{r}
+ggp_combined1 <-plot_grid(p1 , p2 , p3, p4)
+ggp_combined1
+```
+
+**Figure 1.** Relationship between two species, *S. etonia* and *S. repens* and the following physical variables: length (cm), height (cm), width (cm) of canopy, and number of green leaves. Figure A indicates that the length of the canopy could potentially be a predictor in species, with the mean length in *S. repens* being slightly lower than that of *S.etonia*. Figures B and C are slightly less obvious predictors of species. The # of green leaves represented in figure D appear to be the most obvious predictor variable, with the # of green leaves being significantly lower in *S. etonia* compared to *S. repens*. 
+
+# Binary Logistic Regression 
+Binary logistic regression is performed below on two different established models to determine probability of palmetto being a *S. etonia* or *S. repens*:
+Model 1 predictor variables include: `green_lvs`, `height`, `width` and `length`. Model 2 predictor variables include: `green_lvs`, `height`, and `width`.
+
+```{r}
+# Use generarlized linear model, `glm()` and indicate binomial
+# Store both models and functions
+
+f1 <- species ~ green_lvs + height + length + width
+
+palmetto_blr1 <- glm(formula = f1,
+                    data = palmetto_clean,
+                    family = "binomial")
+
+f2 <- species ~  green_lvs + height + width
+
+palmetto_blr2 <- glm(formula = f2,
+                     data = palmetto_clean,
+                     family = "binomial")
+
+# Model 1 has significantly lower AIC according to results
+
+# Insert equations for both models
+extract_eq(palmetto_blr1, wrap = F, use_coefs = TRUE, font_size = "scriptsize")
+extract_eq(palmetto_blr2, wrap = F, use_coefs = TRUE, font_size = "scriptsize")
+```
+
+
+```{r}
+blr1_fitted <- palmetto_blr1 %>% 
+  augment(type.predict = 'response')
+
+blr2_fitted <- palmetto_blr2 %>% 
+  augment(type.predict = 'response')
+
+# Predict, based on this model, ad_chin_blr1.
+# Instead of predicting log odds, taking log odds and converting into probability
+```
+
+
+```{r include=FALSE}
+# Exploratory probability plot, do not include in final knitted doc 
+ggplot(data = blr1_fitted, aes(x = green_lvs, y = .fitted)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(aes(color = species), se = FALSE) +
+  theme(axis.title.x = element_text(hjust = 0.5, vjust = 0.5),
+        legend.position = "none") +
+  scale_color_manual(values = c("palegoldenrod", "lightskyblue2")) +
+  labs(x = '# of Green Leaves',
+       y = 'Probability of outcome of "S. repens"')
+
+ggplot(data = blr2_fitted, aes(x = green_lvs, y = .fitted)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(aes(color = species), se = FALSE) +
+  scale_color_manual(values = c("palegoldenrod", "lightskyblue2")) +
+  labs(x = '# of Green Leaves',
+       y = 'Probability of Outcome "S. repens')
+
+```
+
+**Figure 2.** Probability of outcome *S.repens* given # of leaves as the predictor variable
+
+
+```{r include=FALSE}
+# View the models in tidy format
+
+summary(palmetto_blr1)
+blr1_tidy <- broom::tidy(palmetto_blr1)
+
+summary(palmetto_blr2)
+blr1_tidy <- broom::tidy(palmetto_blr2)
+
+
+
+```
+
+
+# Model Selection
+Both AIC and K-fold cross validation are performed on the two models to compare the model's effectivness
+
+## AICc
+```{r}
+aicc <- AICcmodavg::aictab(list(palmetto_blr1, palmetto_blr2)) 
+```
+
+## Cross-validation
+
+```{r}
+set.seed(44)
+
+n_folds <- 10
+folds <- rep(1:n_folds, length.out = nrow(palmetto_clean))
+
+palmetto_kfold <- palmetto_clean %>% 
+  mutate(fold = sample(folds, size = n(), replace = FALSE))
+```
+
+```{r}
+pred_acc <- function(x,y) {
+  accurate <- ifelse(x == y, 1,0)
+  return(mean(accurate, na.rm = TRUE))
+}
+```
+
+```{r}
+results_df <- data.frame() # Create new data frame to put results of each loop
+
+for(i in 1:n_folds) {
+  kfold_test <- palmetto_kfold %>% 
+    filter(fold == i)
+  kfold_train <- palmetto_kfold %>% 
+    filter(folds != i)
+  
+  kfold_blr1 <- glm(f1, data = kfold_train, family = 'binomial')
+  kfold_blr2 <- glm(f2, data = kfold_train, family = 'binomial')
+  
+  kfold_pred <- kfold_test %>% 
+    mutate(blr1 =predict(kfold_blr1, kfold_test, type = 'response'),
+           blr2 = predict(kfold_blr2, ., type = 'response')) %>%  
+    mutate(pred1 = ifelse(blr1 > .50, '1', '0'),
+           pred2 = ifelse(blr2 > .50, '1', '0'))
+  kfold_accuracy <- kfold_pred %>% 
+    summarize(blr1_acc = pred_acc(species, pred1),
+              blr2_acc = pred_acc(species, pred2))
+  
+  results_df <- bind_rows(results_df, kfold_accuracy)
+    
+}
+
+kfold_table <- results_df %>% 
+  summarize(blr1_acc = mean(blr1_acc),
+            blr2_acc = mean(blr2_acc))
+
+
+```
+
+```{r}
+# Put kfold results in tidy format
+# Rename model names to prepare for merge with AICc results
+kfold_table_tidy <- broom::tidy(kfold_table) %>% 
+  rename("Modnames" = "column" )  %>% 
+  mutate(Modnames = case_when(
+    Modnames == "blr1_acc" ~ "Mod1",
+    Modnames == "blr2_acc" ~ "Mod2"
+  ))
+
+```
+
+```{r}
+# Merge AICc results and accuracy from kfold
+kfold_aicc <- kfold_table_tidy %>% 
+  full_join(aicc)  %>% 
+  select(Modnames, mean, K, AICc) %>% 
+  mutate(Modnames = case_when(
+    Modnames == "Mod1" ~ "Model 1",
+    Modnames == "Mod2" ~ "Model 2"
+  ))
+
+kable(kfold_aicc,
+      format = "html",
+      col.names = c("Model","Mean Accuracy", "# Estimated Parameters", "AICc"),
+      caption = "<strong> Table 1. </strong> Results from both the AICc and the K-fold cross validation including mean accuracy, number of variables, and AICc values for Model 1 and Model 2.",
+      digits = 2) %>% 
+  kable_styling(full_width = FALSE, position = "left", bootstrap_options = "striped") 
+  
+```
+
+
+# Model 1
+Model 1 was chosen as the model to best predict species because according to the K-fold cross validation, it has a higher mean accuracy `r (round(kfold_aicc$mean[1],3)*100)`% compared to Model 2 (mean accuracy = `r (round(kfold_aicc$mean[2],3)*100)`% ). Model 1 also has a lower AICc value (AICc = `r round(kfold_aicc$AICc[1],2)`) compared to Model 2 (AICc = `r round(kfold_aicc$AICc[2],2)`).
+
+```{r}
+# Used `caret` to redo Model 1 k-fold to check what I did above
+# Also to isolate the results and put into a table
+
+set.seed(44)
+
+tr_ctrl <- trainControl(method = 'repeatedcv', number = 10, repeats = 10)
+
+# train the model
+model1 <- train(f1, data = palmetto_clean,
+                method = 'glm', family = 'binomial',
+                trControl = tr_ctrl)
+
+```
+
+``` {r}
+# Put model in tidy format 
+model1_tidy <- broom::tidy(palmetto_blr1) 
+model1_tidy_kable <- model1_tidy %>% 
+mutate(p_value = ifelse(p.value < 0.01, "< 0.001")) %>% 
+  select(term:statistic, p_value) 
+kable(model1_tidy_kable,
+      format = "html",
+      col.names = c("Variable", "Coefficient Estimates", "Standard Error", "Statistics", "P-value"),
+      caption = "<strong> Table 2. </strong> Results of model 1 which predicts species based on the following variables:  # of green leaves, height, length,and width. Includes the coefficients for each term, standard error, statistic, and significance (p-value)",
+      digits = 3)%>% 
+  kable_styling(full_width = FALSE, position = "left", bootstrap_options = "striped") 
+```
+
+
+
+
+
+```{r}
+# Converting log odds to a probability
+blr1_fitted <- palmetto_blr1 %>% 
+  augment(type.predict = 'response')
+blr1_fitted$names = palmetto_clean$species_full # Add a column with the full species name for easier viewing
+
+# Establishing the 50% cutoff
+blr1_eval <- blr1_fitted %>%
+  mutate(eval = .fitted >= 0.5)
+# Creating a table to represent the actual species and the classified ones
+classif_counts <- blr1_eval %>% 
+  janitor::tabyl(species,eval)
+
+classif_proportions <- classif_counts %>% 
+  adorn_percentages() 
+
+classif_propandcount <- classif_proportions %>% 
+  janitor::adorn_pct_formatting(digits = 2) %>% 
+  adorn_ns()
+
+classif_propandcount$species <- c("Serenoa repens", "Sabal etonia")
+
+kable(classif_propandcount,
+      format = "html",
+      col.names = c("","Serenoa repens", "Sabal etonia"),
+      caption = "<strong> Table 3. </strong> Contingency table including the actual plant species and the classified by the model 1") %>% 
+  kable_styling(full_width = FALSE, position = "left", bootstrap_options = "striped") %>% 
+  add_header_above(c("Real" = 1, "Classified" = 2)) %>% 
+  column_spec(1, bold = T)
+```
+
+
+
+
+
+
