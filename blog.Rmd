@@ -1,7 +1,6 @@
 ---
-title: "blog"
-listing: posts
-output:
-  distill::distill_article:
-    self_contained: false
+title: "Some Data Analysis w/ Rstudio"  # any name you want here
+listing: posts # do this exactly
+theme: postcards.css
 ---
+

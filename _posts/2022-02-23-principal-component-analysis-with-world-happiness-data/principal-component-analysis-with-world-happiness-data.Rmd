@@ -1,0 +1,160 @@
+---
+title: "World Happiness Report"
+description: |
+  Analysis and visualizations of world happiness data using principal component analysis.
+author:
+  - name: Renee Lamanna
+    url: {}
+date: 2022-02-23
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+# Overview
+
+The "World Happiness Report", compiled and provided by the Sustainable Development Solutions Network is a landmark survey of the state of global happiness. World Happiness Reports began in 2012 and have since been recognized by governments and organizations as a tool to assess the progress of nations. This analysis uses Principal Component Analysis (PCA) to explore 7 different variables among 149 countries within 10 regions in the year 2019. The variables explored include: happiness score (`score`), per-capita GDP (`gdp_per_capita`), social support (`social_support`), the average life expectancy (`life_expectancy`), freedom to make life choices (`freedom`), generosity (`genorisity`), and perception of corruption (`corruption`). It should be noted that the variables have no impact on the total score as the happiness score is individually measured through surveying. However, some of the variables can help explain why some countries have higher happiness scores than others. 
+
+**Data citation**
+Sustainable Development Solutions Network. 2015, 2019. World Happiness Report. Gallup World Poll. https://www.kaggle.com/unsdsn/world-happiness?select=2019.csv 
+
+```{r setup, include=TRUE, message=FALSE, warning=FALSE}
+# Set code chunk options and attach necessary pkgs
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
+library(tidyverse)
+library(here)
+library(janitor)
+
+### For part 1, PCS:
+library(ggfortify)
+library(factoextra) 
+library(FactoMineR)
+```
+
+
+```{r}
+# Read in data using here() and read_csv() and then change to lowersnake case using clean_names()
+happy <- read_csv(here("_posts", "data", "2019_happy.csv")) %>% 
+  clean_names()
+
+happy_2015 <- read_csv(here("_posts", "data", "2015_happy.csv")) %>% 
+  clean_names()
+```
+
+# Principal Components Analysis (PCA) {.tabset .tabset-fade}
+
+```{r}
+happy_clean <- happy %>% 
+  rename(life_expectancy = healthy_life_expectancy, # Rename some variables
+         freedom = freedom_to_make_life_choices,
+         corruption = perceptions_of_corruption,
+         country = country_or_region)
+
+# Prepare the 2015_happy data for joining, we are joining by country so we can associate regions to country since the 2019 data does not contain region
+happy_2015_clean <- happy_2015 %>% 
+   select(country, region)
+
+happy_regions <- happy_clean %>% 
+  full_join(happy_2015_clean) %>% 
+  drop_na() %>% # Drop N/A values, can't be used in PCA
+  mutate(region = as.factor(region))
+
+```
+
+
+
+``` {r}
+set.seed(12) # set seed to avoid random behavior of labels when knitting
+
+happy_pca <- happy_regions %>% 
+  select(score:corruption) %>%  # Have to get rid of anything that is not numeric, or not important to our analysis
+  scale() %>% 
+  prcomp() 
+  
+  
+```
+
+
+## PCA: Contribution of Variables
+
+```{r}
+fviz_pca_var(happy_pca,
+             col.var = "contrib", # Color by contributions to the PC
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), # Set gradient
+             repel = TRUE,     # Avoid text overlapping
+             legend.title = (color = "% Contribution")) + 
+  
+  labs(title = " ", x = "PC1 (54.9%)", y = "PC2 (19.8%)")
+             
+```
+
+**Figure 1.** PCA of 7 different variables collected to measure happiness around the world. The colors of each vector indicate the percentage of the explained variance that is captured by each variable (contribution). The angles between each of the variables indicate their correlation to each other (0&deg; angle = correlation of 1, 180&deg; = correlation of -1, 90&deg; or 270&deg; = correlation of 0). The axis specify the total amount of variance explained by the given variables. 
+ 
+
+## PCA: Biplot 1
+ 
+```{r}
+set.seed(25) # set seed to avoid random behavior of labels when knitting
+
+fviz_pca_biplot(happy_pca,
+                
+                # Aesthetic changes for variables
+                col.var = "black", # Indicate variable lines as black
+                repel = TRUE,     # Avoid text overlapping,
+                label = "var" , # Labels for variables, but not observations
+    
+                # Aesthetic changes for observations
+                mean.point = FALSE, # Remove mean points from being included
+                geom.ind = "point", 
+                fill.ind = happy_regions$region, # Fill of points corresponding to region w/in `happy_regions` dataset
+                palette = c("pink", "mediumaquamarine", "orangered", "mediumblue", "gold", "red", "lightskyblue", "firebrick4", "darkgreen", "darkorange"),
+                col.ind = "white", # Outline of observations is "white"
+                pointshape = 21 ,
+                pointsize = 2,
+                alpha.ind= 0.7,
+                legend.title = (color = "Region")) +
+  
+  labs(title = " ", x = "PC1 (54.9%)", y = "PC2 (19.8%)" )
+```
+
+**Figure 2.** PCA biplot in which observations are represented by points, each of which are a country within a given region. Variables are indicated by lines (vectors) and the angle between two given variables indicates their relationship (0&deg; angle = correlation of 1, 180&deg; = correlation of -1, 90&deg; or 270&deg; = correlation of 0). The axis specify the total amount of variance explained by the given variables. 
+
+## PCA: Biplot 2
+
+```{r}
+set.seed(25) # set seed to avoid random behavior of labels when knitting
+
+happy_pca_gdp <- happy_regions %>% 
+  select(score, social_support:corruption) %>% # Here, not including gdp, because including sliding gradient of gdp that will correspond to observations(counties)
+  scale() %>% 
+  prcomp()
+
+fviz_pca_biplot(happy_pca_gdp, 
+                
+                # Aesthetic changes for variables
+                col.var = "black",
+                repel = TRUE, # Avoid text overlapping,
+                label ="var",
+    
+                # Aesthetic changes for observations
+                mean.point = FALSE,
+                geom.ind = "point",
+                fill.ind = happy_regions$gdp_per_capita, 
+                col.ind = "white",
+                gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+                pointshape = 21 ,
+                pointsize = 2 ,
+                alpha.ind=1 ,
+                legend.title = (color = "GDP")) +
+  
+  labs(title = " ", x = "PC1 (52%)", y = "PC2 (21.9%)" )
+```
+
+**Figure 3.** Biplot of principal components analysis (PCA) in which observations are represented by points, each of which are individual countries. Their associated colors correspond to the per capita GDP of their country. Note that GDP was removed as a variable as it is represented within each observation in this figure. Variables are indicated by lines (vectors) and the angle between two given variables indicates their relationship (0&deg; angle = correlation of 1, 180&deg; = correlation of -1, 90&deg; or 270&deg; = correlation of 0). The axis specify the total amount of variance explained by the given variables. 
+
+
+# Conclusion
+
+In the principal component analysis of the "World Happiness Report", the variables life_expectancy, social_support, and gdp_per_capita have a correlation of about 1. Score has a correlation of about 0.5 with life_expectancy, social_support, and gdp_per_capita. This is relatively consistent to what one might predict determines happiness within a region. There also appears to be a small correlation between freedom and corruption and possibly between generosity and corruption, but these relationships are less intuitive. Generosity has a correlation of about 0 to the following variables: score, life expectancy, gdp, and social support. In figure 2, there are some observable clusters of regions such as countries in Sub-Saharan Africa. There are also clusters of countries within North America and Western Europe. In figure 3, there are clusters of GDP among countries. In general, countries with the highest GDPs are clustered together and counties with the lowest are clustered together. Countries with mid-GDP's do not show as much defined clustering. From this analysis, it can be concluded that the variables contributing the most and positively correlated to happiness score are social support, GDP, and average life expectancy. In general, we can also see clustering (similarity) among countries within the same region as well as clustering of countries with relatively the same per capita GDP.
+

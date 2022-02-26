@@ -11,9 +11,9 @@ navbar:
       href: about.html
     - text: "Resume"
       href: LaManna_resume.pdf
-    - text: "Portfolio"
-      href: portfolio.html
     - text: "Blog"
       href: blog.html
+    - text: "Portfolio"
+      href: portfolio.html
 output: distill::distill_article
-theme: postcards.css
+theme: postcards.css  
