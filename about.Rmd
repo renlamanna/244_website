@@ -2,6 +2,7 @@
 title: "About Renee"
 description: |
   More about me 
+theme: postcards.css 
 ---
 
 ```{r setup, include=FALSE}

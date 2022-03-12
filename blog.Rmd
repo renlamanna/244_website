@@ -1,6 +1,5 @@
 ---
-title: "Some Data Analysis w/ Rstudio"  # any name you want here
+title: "Statistics, Data, & Science with Rstudio"  # any name you want here
 listing: posts # do this exactly
-theme: postcards.css
 ---
 

@@ -3,39 +3,24 @@
     {
       "path": "about.html",
       "title": "About Renee",
-      "description": "More about me ",
+      "description": "More about me \n",
       "author": [],
       "contents": "\nI graduated from UCSB in 2020 ith a B.S. in Aquatic Biology. I spent much of my undergrad as a scientific diver and lab tech for SBC-LTER. I loved being underwater off my favorite coast everday amongst the kelp forests collecting data as part of decades-long projects. I continued field work after I graduated, but this time in Wetland restoration. Both ecosystems alike many others are experiencing permant damage caused by anthropogenic stressors.\nI am privileged to have spent so much time in marine research and I believe it has given me an advantage in understand their importance. I came to Bren to learn more about people’s relationship with the environment, especially though the food they consume (e.g. fish, agriculture). I am also interested in how coastal cities will be responding to climate change and how we can better develop our cities to be more self-sustaining.\n\n\n\n",
-      "last_modified": "2022-02-23T12:16:50-08:00"
+      "last_modified": "2022-03-12T13:08:18-08:00"
     },
     {
       "path": "blog.html",
-      "title": "Some Data Analysis w/ Rstudio",
+      "title": "Statistics, Data, & Science with Rstudio",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2022-02-23T13:01:37-08:00"
+      "last_modified": "2022-03-12T13:08:19-08:00"
     },
     {
       "path": "index.html",
       "title": "Renee LaManna",
       "author": [],
-      "contents": "\n\n          \n          \n          Renee LaManna\n          \n          \n          Home\n          About\n          Resume\n          Blog\n          Portfolio\n          ☰\n          \n          \n      \n        \n          \n            \n              \n            \n              Renee LaManna\n            \n            \n              \n                \n                    \n                      \n                        LinkedIn\n                      \n                    \n                  \n                                    \n                    \n                      \n                        GitHub\n                      \n                    \n                  \n                                    \n                    \n                      \n                        Email\n                      \n                    \n                  \n                                  \n            \n          \n        \n        \n        \n          \n            I am Master’s student at the Bren School of Environmental Science and Management. I am specializing in Coastal Marine Resource Management and am eager to build a career in which I can create sustainable coastal communities that are resilient to climate change. I am especially interested in coastal resilience in the face of climate change in severely at risk communities, such as island nations. Aside from that, I spend my free time with other people’s doggos because I am not yet mature enough for my own.\n          \n        \n      \n    \n\n    \n      \n        \n          \n            \n              \n            \n              Renee LaManna\n            \n            \n              \n                \n                                    \n                    \n                      LinkedIn\n                    \n                  \n                                    \n                    \n                      GitHub\n                    \n                  \n                                    \n                    \n                      Email\n                    \n                  \n                                  \n              \n            \n            \n              I am Master’s student at the Bren School of Environmental Science and Management. I am specializing in Coastal Marine Resource Management and am eager to build a career in which I can create sustainable coastal communities that are resilient to climate change. I am especially interested in coastal resilience in the face of climate change in severely at risk communities, such as island nations. Aside from that, I spend my free time with other people’s doggos because I am not yet mature enough for my own.\n            \n        \n      \n    \n\n    \n    \n    ",
-      "last_modified": "2022-02-27T13:15:44-08:00"
-    },
-    {
-      "path": "portfolio.html",
-      "title": "Portfolio",
-      "description": "Check out some of my work!",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2022-02-23T13:02:59-08:00"
-    },
-    {
-      "path": "projects.html",
-      "title": "Projects",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2022-02-23T12:17:09-08:00"
+      "contents": "\n\n          \n          \n          Renee LaManna\n          \n          \n          Home\n          About\n          Resume\n          Blog\n          ☰\n          \n          \n      \n        \n          \n            Renee LaManna\n          \n          \n            \n              I am Master’s student at the Bren School of Environmental Science and Management. I am specializing in Coastal Marine Resource Management and am eager to build a career in which I can create sustainable coastal communities that are resilient to climate change. I am especially interested in coastal resilience in the face of climate change in severely at risk communities, such as island nations. Aside from that, I spend my free time with other people’s doggos because I am not yet mature enough for my own.\n            \n            \n              I am Master’s student at the Bren School of Environmental Science and Management. I am specializing in Coastal Marine Resource Management and am eager to build a career in which I can create sustainable coastal communities that are resilient to climate change. I am especially interested in coastal resilience in the face of climate change in severely at risk communities, such as island nations. Aside from that, I spend my free time with other people’s doggos because I am not yet mature enough for my own.\n            \n          \n\n          \n            \n              \n                  \n                    \n                      LinkedIn\n                    \n                  \n                \n                                \n                  \n                    \n                      GitHub\n                    \n                  \n                \n                                \n                  \n                    \n                      Email\n                    \n                  \n                \n                              \n          \n\n          \n            \n              \n                                \n                  \n                    LinkedIn\n                  \n                \n                                \n                  \n                    GitHub\n                  \n                \n                                \n                  \n                    Email\n                  \n                \n                              \n            \n          \n        \n      \n    \n\n    \n    \n    ",
+      "last_modified": "2022-03-12T13:08:19-08:00"
     }
   ],
   "collections": ["posts/posts.json"]
