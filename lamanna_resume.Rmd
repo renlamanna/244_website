@@ -2,7 +2,7 @@
 title: "Resume"
 ---
 
-<a href = "lamanna_resume.pdf" target = "_blank">Click here for a pdf!</a> 
+<a href = "LaManna_resume.pdf" target = "_blank">Click here for a pdf!</a> 
 
 <center>
 ## Renee LaManna
