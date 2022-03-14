@@ -1,0 +1,81 @@
+---
+title: "Resume"
+---
+
+<a href = "lamanna_resume.pdf" target = ‘_blank’> Click here for a PDF </a> 
+
+<center>
+## Renee LaManna
+630-745-9713 | reneelamanna@bren.ucsb.edu | LinkedIn | Santa Barbara, CA
+</center>
+
+### EDUCATION
+**Master of Environmental Science and Management**, 3.90 GPA (Expected June 2023)
+Bren School of Environmental Science & Management – University of California, Santa Barbara (UCSB) Specializations: Coastal Marine Resource Management Specialization | Economics & Politics of the Environment Focus: Strategic Environmental Communication & Media Focus
+Highlighted Coursework: Data Analysis (complete), Environmental Politics & Policy (Winter 2022), Ecological Principles (Winter 2022), and Advanced Data Analysis (Winter 2022)
+
+**Bachelor of Science in Aquatic Biology**, 3.47 GPA (June 2020) University of California, Santa Barbara (UCSB)
+Honors: Dean’s Honors (Fall 2019, Spring 2020)
+
+### EXPERIENCE
+**Graduate Teaching Assistant** (9/21–Present) Ecology, Evolution, & Marine Biology (EEMB) Department, UCSB, Santa Barbara, CA
+
+- Instructed 3 weekly sections and supervised an additional section for an upper division EEMB course (Aquatic Communities, 142A)
+- Efficiently graded and provided feedback for up to 50 assignments weekly and over 100 total exams
+- Hosted weekly office hours to offer support to students and aid them in gaining a better understanding of the material and assignments
+
+**Social Media Manager** (12/20–Present) SAVRcup, San Diego, CA
+
+- Utilized the platform Planoly to schedule 2-3 posts per week on Instagram that promoted all of SAVRcup’s
+products and shared relevant information
+- Conducted online research of current environmental news that could be incorporated into Instagram posts
+to boost SAVRcup’s image and communicated research to decision makers
+- Communicated with SAVRcup enthusiasts and potential clients at events with more than 1,000 attendees
+where SAVRcup products were featured at
+
+**Seasonal Laboratory Assistant 3** (9/20–12/20)
+San Onofre Nuclear Generating Station (SONGS) lab, Marine Science Institute, UCSB, Santa Barbara, CA
+
+- Monitored 3 Southern California tidal estuaries as part of a mitigation project to compensate for losses of
+fish standing stock that occurred due to the operation of SoCal Edison’s SONGS
+- Measured biological performance standards by conducting fish & invertebrate surveys which determined
+current status of standing fish stock and invertebrate diversity
+- Processed meiofaunal core samples which included identification and sorting over 50 different polychaetas
+of about 20 families and 30 species of crustaceans and miscellaneous invertebrates
+
+**Farmers Market Assistant Manager & Farm Stand Educator** (1/20–9/20) The Center for Urban Agriculture at Fairview Gardens, Santa Barbara, CA
+
+- Educated customers on importance of buying locally grown organic produce and of youth educational
+opportunities at the farm
+- Managed stand and sold up to $700 of organic, local produce daily at Santa Barbara’s certified farmer’s
+market
+     
+**Research Assistant** (5/17–4/20)
+Santa Barbara Channel Long-Term Ecological Research (SBC-LTER) lab, Marine Science Institute, UCSB, CA
+
+- Assisted principal investigators in order to explore how kelp canopy fish species that depend on kelp
+mesograzers respond to canopy loss in the Santa Barbara Channel
+- Collected 3 different species of fish via SCUBA and led dissections of fish guts to determine changes in fish
+diet which included the identification of about 30 different algae, crustaceans, and invertebrates
+- Streamlined the identification of fish gut species and overall sample organization process in order to develop
+an official protocol for the project
+- Completed extensive data entry using Microsoft Excel and mentored incoming interns so they could also
+assist with the project
+
+**Research Experience for Undergraduates (REUs) Participant** (6/19–9/19)
+Santa Barbara Channel Long-Term Ecological Research (SBC-LTER) lab, Marine Science Institute, UCSB, CA
+
+- Completed over 100 dives using SCUBA in which I conducted kelp, invertebrate, and fish surveys at over 10
+different sites in the Santa Barbara channel
+- Maintained, programmed, and uploaded information from oceanographic monitoring equipment
+- Assisted PhD and Master students with various projects
+
+### ADDITIONAL EXPERIENCE
+**Swim Instructor** – Santa Barbara Aquatics, Santa Barbara, CA (1/19–10/20)
+**Undergraduate Intern** – Moorea Coral Reef Long-Term Ecological Research Lab, Santa Barbara, CA (1/19–6/19) Seasonal Lifeguard and **Instructor** – UCSB Surf & Kayak Camp, Santa Barbara, CA (6/17–8/19)
+**Student Sustainability Coalition (SSC) Officer**, Santa Barbara City College, Santa Barbara, CA (1/16–6/18) Marine Biology & **Chemistry Teaching Assistant** – Santa Barbara City College, Santa Barbara, CA (8/16–5/17)
+
+### SKILLS & CERTIFICATIONS
+Data Analysis Tools: R language and RStudio, Microsoft Excel
+Communication Tools: Microsoft Word and PowerPoint, Zoom, Box, Google Drive
+Certifications: American Red Cross CPR & First Aid, AAUS Scientific diver (UCSB Coastal Fund scholarship)

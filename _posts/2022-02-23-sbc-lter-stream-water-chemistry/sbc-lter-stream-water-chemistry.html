@@ -112,12 +112,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["SBC-LTER Stream Water Chemistry"]},{"type":"character","attributes":{},"value":["Agglomerative Hierarchical Clustering For Water Chemistry of Santa Barbara Streams.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Renee Lamanna"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2022-02-23"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["SBC-LTER Stream Water Chemistry"]},{"type":"character","attributes":{},"value":["Agglomerative Hierarchical Clustering For Water Chemistry of Santa Barbara Streams.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Renee Lamanna"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2022-02-23"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding","theme"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["yeti"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["sbc-lter-stream-water-chemistry_files/figure-html5/unnamed-chunk-4-1.png","sbc-lter-stream-water-chemistry_files/figure-html5/unnamed-chunk-5-1.png","sbc-lter-stream-water-chemistry_files/figure-html5/unnamed-chunk-6-1.png"]}
+  {"type":"character","attributes":{},"value":["sbc-lter-stream-water-chemistry_files/anchor-4.2.2/anchor.min.js","sbc-lter-stream-water-chemistry_files/bowser-1.9.3/bowser.min.js","sbc-lter-stream-water-chemistry_files/distill-2.2.21/template.v2.js","sbc-lter-stream-water-chemistry_files/figure-html5/unnamed-chunk-4-1.png","sbc-lter-stream-water-chemistry_files/figure-html5/unnamed-chunk-5-1.png","sbc-lter-stream-water-chemistry_files/figure-html5/unnamed-chunk-6-1.png","sbc-lter-stream-water-chemistry_files/header-attrs-2.11/header-attrs.js","sbc-lter-stream-water-chemistry_files/jquery-3.6.0/jquery-3.6.0.js","sbc-lter-stream-water-chemistry_files/jquery-3.6.0/jquery-3.6.0.min.js","sbc-lter-stream-water-chemistry_files/jquery-3.6.0/jquery-3.6.0.min.map","sbc-lter-stream-water-chemistry_files/popper-2.6.0/popper.min.js","sbc-lter-stream-water-chemistry_files/tippy-6.2.7/tippy-bundle.umd.min.js","sbc-lter-stream-water-chemistry_files/tippy-6.2.7/tippy-light-border.css","sbc-lter-stream-water-chemistry_files/tippy-6.2.7/tippy.css","sbc-lter-stream-water-chemistry_files/tippy-6.2.7/tippy.umd.min.js","sbc-lter-stream-water-chemistry_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1486,16 +1486,25 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>The data for this analysis contains stream water chemistry measurements of Santa Barbara county watersheds beginning in 2000 and continuing annually completed by the Santa Barbara Coastal LTER. Measurements were taken for the following physical variables: dissolved nitrogen (nitrate, ammonium, total dissolved nitrogen); soluble reactive phosphorus (SRP); particulate organic carbon, nitrogen and phosphorus; total suspended sediments; and conductivity. 13 different sites and 10 different physical variables are explored using agglomerative hierarchical clustering. Hierarchical clustering by both complete and single linkage are visualized using dendrograms. A tanglegram is then used to further explore the difference between single and complete linkage hierarchical clustering.</p>
 <p><strong>Data citation</strong> Santa Barbara Coastal LTER and J. Melack. 2019. SBC LTER: Land: Stream chemistry in the Santa Barbara Coastal drainage area, ongoing since 2000 ver 16. Environmental Data Initiative. <a href="https://doi.org/10.6073/pasta/67a558a24ceed9a0a5bf5e46ab841174" class="uri">https://doi.org/10.6073/pasta/67a558a24ceed9a0a5bf5e46ab841174</a></p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Read in data using here() and read_csv() and then change to lowersnake case using clean_names()</span>
 <span class='va'>streams</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>"_posts"</span>, <span class='st'>"data"</span>, <span class='st'>"sbc_lter_registered_stream_chemistry.csv"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/janitor/man/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://rdrr.io/pkg/janitor/man/clean_names.html'>clean_names</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 </div>
 <h2 class="tabset tabset-fade" id="hierarchical-clustering">Hierarchical Clustering</h2>
 <p>Hierarchical clustering by both complete and single linkage are completed to create dendrograms showing multivariate clustering for water chemistry by site.</p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>clean_streams</span> <span class='op'>&lt;-</span> <span class='va'>streams</span> <span class='op'><a href='https://rdrr.io/pkg/janitor/man/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>site_code</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/janitor/man/pipe.html'>%&gt;%</a></span> 
@@ -1528,8 +1537,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>streams_scaled</span> <span class='op'>&lt;-</span> <span class='va'>clean_streams</span> <span class='op'><a href='https://rdrr.io/pkg/janitor/man/pipe.html'>%&gt;%</a></span> <span class='co'># Scale data</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/janitor/man/pipe.html'>%&gt;%</a></span> 
@@ -1540,9 +1554,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class='va'>euc_distance</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/factoextra/man/dist.html'>dist</a></span><span class='op'>(</span><span class='va'>streams_scaled</span>, method <span class='op'>=</span> <span class='st'>'euclidean'</span>, diag <span class='op'>=</span> <span class='cn'>TRUE</span>, upper <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>     <span class='co'># Calculate euclidean distance</span>
 </code></pre>
 </div>
+</details>
 </div>
 <h3 id="complete-dendrogram">Complete dendrogram</h3>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>hc_complete</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='va'>euc_distance</span>, method <span class='op'>=</span> <span class='st'>'complete'</span><span class='op'>)</span> <span class='co'># Indicate complete as method</span>
   
@@ -1556,11 +1575,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v <span class='op'>=</span> <span class='fl'>350</span>, lty <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <p><img src="sbc-lter-stream-water-chemistry_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
 </div>
 <p><strong>Figure 1.</strong> Dendrogram of hierarchical clustering by complete linkage. The sites within Santa Barbara county are listed along the x-axis and distance along the y. 3 different multivariate clusters were estimated and are specified by color.</p>
 <h3 id="single-dendrogram">Single dendrogram</h3>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>hc_single</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span><span class='op'>(</span><span class='va'>euc_distance</span>, method <span class='op'>=</span> <span class='st'>'single'</span><span class='op'>)</span> <span class='co'># Indicat single as method</span>
 
@@ -1574,11 +1598,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v <span class='op'>=</span> <span class='fl'>350</span>, lty <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <p><img src="sbc-lter-stream-water-chemistry_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
 <p><strong>Figure 2.</strong> Dendrogram of hierarchical clustering by single linkage. The sites within Santa Barbara county are listed along the x-axis and distance along the y. 4 different multivariate clusters were estimated and are specified by color.</p>
 <h3 id="tanglegram">Tanglegram</h3>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Prepare dendrograms for tanglegram, put into list and set customizations</span>
 <span class='va'>dl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='http://talgalili.github.io/dendextend/reference/dendlist.html'>dendlist</a></span><span class='op'>(</span>
@@ -1600,6 +1629,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
            lwd <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <p><img src="sbc-lter-stream-water-chemistry_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
 <p><strong>Figure 3.</strong> Tanglegram to compare hierarchical clustering by single linkage and complete linkage. The dendrogram on the left is of complete linkage and has 3 identified clusters and the dendrogram on the right is of single linkage and has 4 identified clusters. Connected lines show sub-trees which are present in both dendrograms.</p>
