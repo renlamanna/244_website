@@ -113,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["World Happiness Report"]},{"type":"character","attributes":{},"value":["Analysis and visualizations of world happiness data using principal component analysis."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Renee Lamanna"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2022-02-23"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["World Happiness Report"]},{"type":"character","attributes":{},"value":["Analysis and visualizations of world happiness data using principal component analysis."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Renee Lamanna"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2022-02-23"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding","theme"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["yeti"]}]}]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2395,7 +2395,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <div class="nav-right">
 <a href="../../index.html">Home</a>
 <a href="../../about.html">About</a>
-<a href="../../LaManna_resume.pdf">Resume</a>
+<a href="../../resume.html">Resume</a>
 <a href="../../blog.html">Blog</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
@@ -2423,6 +2423,10 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>The “World Happiness Report”, compiled and provided by the Sustainable Development Solutions Network is a landmark survey of the state of global happiness. World Happiness Reports began in 2012 and have since been recognized by governments and organizations as a tool to assess the progress of nations. This analysis uses Principal Component Analysis (PCA) to explore 7 different variables among 149 countries within 10 regions in the year 2019. The variables explored include: happiness score (<code>score</code>), per-capita GDP (<code>gdp_per_capita</code>), social support (<code>social_support</code>), the average life expectancy (<code>life_expectancy</code>), freedom to make life choices (<code>freedom</code>), generosity (<code>genorisity</code>), and perception of corruption (<code>corruption</code>). It should be noted that the variables have no impact on the total score as the happiness score is individually measured through surveying. However, some of the variables can help explain why some countries have higher happiness scores than others.</p>
 <p><strong>Data citation</strong> Sustainable Development Solutions Network. 2015, 2019. World Happiness Report. Gallup World Poll. <a href="https://www.kaggle.com/unsdsn/world-happiness?select=2019.csv" class="uri">https://www.kaggle.com/unsdsn/world-happiness?select=2019.csv</a></p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Set code chunk options and attach necessary pkgs</span>
 <span class='fu'>knitr</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/knitr/man/opts_chunk.html'>opts_chunk</a></span><span class='op'>$</span><span class='fu'>set</span><span class='op'>(</span>echo <span class='op'>=</span> <span class='cn'>TRUE</span>, message<span class='op'>=</span><span class='cn'>FALSE</span>, warning<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
@@ -2436,8 +2440,13 @@ d-appendix d-footnote-list a.footnote-backlink {
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://factominer.free.fr'>FactoMineR</a></span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Read in data using here() and read_csv() and then change to lowersnake case using clean_names()</span>
 <span class='va'>happy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>"_posts"</span>, <span class='st'>"data"</span>, <span class='st'>"2019_happy.csv"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/janitor/man/pipe.html'>%&gt;%</a></span> 
@@ -2447,9 +2456,14 @@ d-appendix d-footnote-list a.footnote-backlink {
   <span class='fu'><a href='https://rdrr.io/pkg/janitor/man/clean_names.html'>clean_names</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 </div>
 <h1 class="tabset tabset-fade" id="principal-components-analysis-pca">Principal Components Analysis (PCA)</h1>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>happy_clean</span> <span class='op'>&lt;-</span> <span class='va'>happy</span> <span class='op'><a href='https://rdrr.io/pkg/janitor/man/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>life_expectancy <span class='op'>=</span> <span class='va'>healthy_life_expectancy</span>, <span class='co'># Rename some variables</span>
@@ -2467,8 +2481,13 @@ d-appendix d-footnote-list a.footnote-backlink {
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>region <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>region</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>12</span><span class='op'>)</span> <span class='co'># set seed to avoid random behavior of labels when knitting</span>
 
@@ -2478,9 +2497,14 @@ d-appendix d-footnote-list a.footnote-backlink {
   <span class='fu'><a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a></span><span class='op'>(</span><span class='op'>)</span> 
 </code></pre>
 </div>
+</details>
 </div>
 <h2 id="pca-contribution-of-variables">PCA: Contribution of Variables</h2>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/factoextra/man/fviz_pca.html'>fviz_pca_var</a></span><span class='op'>(</span><span class='va'>happy_pca</span>,
              col.var <span class='op'>=</span> <span class='st'>"contrib"</span>, <span class='co'># Color by contributions to the PC</span>
@@ -2491,11 +2515,16 @@ d-appendix d-footnote-list a.footnote-backlink {
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>" "</span>, x <span class='op'>=</span> <span class='st'>"PC1 (54.9%)"</span>, y <span class='op'>=</span> <span class='st'>"PC2 (19.8%)"</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <p><img src="principal-component-analysis-with-world-happiness-data_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
 </div>
 <p><strong>Figure 1.</strong> PCA of 7 different variables collected to measure happiness around the world. The colors of each vector indicate the percentage of the explained variance that is captured by each variable (contribution). The angles between each of the variables indicate their correlation to each other (0° angle = correlation of 1, 180° = correlation of -1, 90° or 270° = correlation of 0). The axis specify the total amount of variance explained by the given variables.</p>
 <h2 id="pca-biplot-1">PCA: Biplot 1</h2>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>25</span><span class='op'>)</span> <span class='co'># set seed to avoid random behavior of labels when knitting</span>
 
@@ -2520,11 +2549,16 @@ d-appendix d-footnote-list a.footnote-backlink {
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>" "</span>, x <span class='op'>=</span> <span class='st'>"PC1 (54.9%)"</span>, y <span class='op'>=</span> <span class='st'>"PC2 (19.8%)"</span> <span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <p><img src="principal-component-analysis-with-world-happiness-data_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
 <p><strong>Figure 2.</strong> PCA biplot in which observations are represented by points, each of which are a country within a given region. Variables are indicated by lines (vectors) and the angle between two given variables indicates their relationship (0° angle = correlation of 1, 180° = correlation of -1, 90° or 270° = correlation of 0). The axis specify the total amount of variance explained by the given variables.</p>
 <h2 id="pca-biplot-2">PCA: Biplot 2</h2>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>25</span><span class='op'>)</span> <span class='co'># set seed to avoid random behavior of labels when knitting</span>
 
@@ -2554,6 +2588,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>" "</span>, x <span class='op'>=</span> <span class='st'>"PC1 (52%)"</span>, y <span class='op'>=</span> <span class='st'>"PC2 (21.9%)"</span> <span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <p><img src="principal-component-analysis-with-world-happiness-data_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
 <p><strong>Figure 3.</strong> Biplot of principal components analysis (PCA) in which observations are represented by points, each of which are individual countries. Their associated colors correspond to the per capita GDP of their country. Note that GDP was removed as a variable as it is represented within each observation in this figure. Variables are indicated by lines (vectors) and the angle between two given variables indicates their relationship (0° angle = correlation of 1, 180° = correlation of -1, 90° or 270° = correlation of 0). The axis specify the total amount of variance explained by the given variables.</p>
