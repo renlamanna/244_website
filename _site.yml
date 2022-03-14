@@ -10,7 +10,7 @@ navbar:
     - text: "About"
       href: about.html
     - text: "Resume"
-      href: lamanna_resume.html
+      href: LaManna_resume.html
     - text: "Blog"
       href: blog.html
 output: distill::distill_article
